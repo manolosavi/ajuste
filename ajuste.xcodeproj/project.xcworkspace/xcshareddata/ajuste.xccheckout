@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>45F30427-4AD2-4124-941E-4C4CE1DBA28D</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ajuste</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>09A138C6B72E55A48E73B701ED215115E60A0256</key>
+		<string>https://github.com/manolosavi/ajuste.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ajuste.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>09A138C6B72E55A48E73B701ED215115E60A0256</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/manolosavi/ajuste.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>09A138C6B72E55A48E73B701ED215115E60A0256</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>09A138C6B72E55A48E73B701ED215115E60A0256</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ajuste</string>
+		</dict>
+	</array>
+</dict>
+</plist>

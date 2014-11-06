@@ -93,9 +93,9 @@ if (false) {//debug (usar 4 datos, X polinomios)
 			vector<double> temp;//temporalmente guardar renglon
 			for (int j=0; j<=p+1; j++) {//columna
 				if (j == p+1) {
-					temp.push_back(sum(xi, yi, i, 1));//suma puras x
+					temp.push_back(sum(xi, yi, i, 1));//suma x's * y
 				} else {
-					temp.push_back(sum(xi, yi, i+j, 0));// suma x's * y
+					temp.push_back(sum(xi, yi, i+j, 0));// suma puras x
 				}
 			}
 			matriz.push_back(temp);//guarda renglon en matriz
