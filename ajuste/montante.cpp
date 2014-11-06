@@ -18,7 +18,7 @@ public:
 	int j;
 };
 
-void multiplica(vector< vector<double> > &a, Point p, Point f, int piv) {
+void multiplica(vector< vector<long double> > &a, Point p, Point f, int piv) {
 	if (p.i < f.i) {
 		a[f.i][f.j] = (a[p.i][p.j]*a[f.i][f.j] - a[p.i][f.j]*a[f.i][p.i]) / piv;
 	} else {
@@ -26,8 +26,8 @@ void multiplica(vector< vector<double> > &a, Point p, Point f, int piv) {
 	}
 }
 
-bool compare(vector< vector<double> > a, int x, int y) {
-	vector<double> d;
+bool compare(vector< vector<long double> > a, int x, int y) {
+	vector<long double> d;
 	for (int i=0; i<a.size(); i++) {
 		if (a[x][i] != a[y][i]) {
 			return false;
@@ -44,7 +44,7 @@ bool compare(vector< vector<double> > a, int x, int y) {
 	return true;
 }
 
-void solve(vector< vector<double> > &a, int numVariables, vector<double> &r) {
+void solve(vector< vector<long double> > &a, int numVariables, vector<long double> &r) {
 	int pivAct, pivAnt = 1;
 	
 	for (int i=0; i<numVariables; i++) {

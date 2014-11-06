@@ -9,8 +9,8 @@
 #include "montante.cpp"
 
 //regresa la sumatoria que se guarda en la matriz
-double sum(vector<double> x, vector<double> y, int powX, int powY) {
-	double total = 0;
+long double sum(vector<long double> x, vector<long double> y, int powX, int powY) {
+	long double total = 0;
 	
 	if (powY > 0) {//incluye y's
 		for (int i=0; i<x.size(); i++) {
@@ -25,10 +25,20 @@ double sum(vector<double> x, vector<double> y, int powX, int powY) {
 	return total;
 }
 
+void print(vector< vector<long double> > m) {
+	for (int i=0; i<m.size(); i++) {
+		for (int j=0; j<m[i].size(); j++) {
+			cout << m[i][j] << " ";
+		}
+		cout << endl;
+	}
+	cout << endl << endl;
+}
+
 int main() {
 	int numDatos, maxPolinomio;
-	vector<double> xi, yi;
-	vector< vector<double> > matriz, coeficientes;
+	vector<long double> xi, yi;
+	vector< vector<long double> > matriz, coeficientes;
 	bool error = false;
 	
 	cout << "Cual es el numero de datos a ajustar?\n";
@@ -43,7 +53,7 @@ int main() {
 		error = (maxPolinomio > numDatos);
 	} while (error);
 	
-	double x=0, y=0, wh=0;
+	long double x=0, y=0, wh=0;
 
 if (false) {//debug (usar 10 datos, X polinomios)
 //	leer xi, yi
@@ -95,13 +105,13 @@ if (false) {//debug (usar 10 datos, X polinomios)
 
 	
 	for (int i=0; i<maxPolinomio; i++) {//inicializa los vectores
-		coeficientes.push_back(vector<double>());
+		coeficientes.push_back(vector<long double>());
 	}
 	
 	for (int p=1; p<=maxPolinomio; p++) {//polinomios
 		
 		for (int i=0; i<=p; i++) {//renglon
-			vector<double> temp;//temporalmente guardar renglon
+			vector<long double> temp;//temporalmente guardar renglon
 			for (int j=0; j<=p+1; j++) {//columna
 				if (j == p+1) {
 					temp.push_back(sum(xi, yi, i, 1));//suma x's * y
@@ -112,23 +122,12 @@ if (false) {//debug (usar 10 datos, X polinomios)
 			matriz.push_back(temp);//guarda renglon en matriz
 		}
 		
-		for (int a=0; a<matriz.size(); a++) {
-			for (int b=0; b<matriz[a].size(); b++) {
-				cout << matriz[a][b] << " ";
-			}
-			cout << endl;
-		}
+		print(matriz);
 		
 		solve(matriz, p+1, coeficientes[p-1]);
 //		resuelve la matriz con montante, regresa las respuestas en el vector coeficientes
 		
-		for (int a=0; a<matriz.size(); a++) {
-			for (int b=0; b<matriz[a].size(); b++) {
-				cout << matriz[a][b] << " ";
-			}
-			cout << endl;
-		}
-		cout << endl << endl;
+		print(matriz);
 		
 		for (int a=0; a<matriz.size(); a++) {//borrar matriz para reusar
 			matriz[a].clear();
@@ -141,13 +140,13 @@ if (false) {//debug (usar 10 datos, X polinomios)
 //	imprime respuestas
 	for (int i=0; i<maxPolinomio; i++) {
 		cout <<"Polinomio de grado " << i+1 << ":\n";
-		for (int j=0; j<=i; j++) {
+		for (int j=0; j<=i+1; j++) {
 			if (coeficientes[i][j] > 0) {
 				cout << "+";
 			}
 			cout << coeficientes[i][j] << "x^" << j << " ";
 		}
-		cout << endl;
+		cout << endl << endl;
 	}
     return 0;
 }
