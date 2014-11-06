@@ -25,6 +25,16 @@ long double sum(vector<long double> x, vector<long double> y, int powX, int powY
 	return total;
 }
 
+long double f(vector<long double> coeficientes, long double x) {
+	long double r = 0;
+	
+	for (int i=0; i<coeficientes.size(); i++) {
+		r += coeficientes[i]*pow(x, i);
+	}
+	
+	return r;
+}
+
 void print(vector< vector<long double> > m) {
 	for (int i=0; i<m.size(); i++) {
 		for (int j=0; j<m[i].size(); j++) {
@@ -140,16 +150,22 @@ int main() {
 	
 //	imprime respuestas
 	for (int i=0; i<maxPolinomio; i++) {
-		cout <<"Polinomio de grado " << i+1 << ":\n";
+		cout << "Polinomio de grado " << i+1 << ":\n";
 		for (int j=0; j<=i+1; j++) {
 			if (coeficientes[i][j] > 0) {
 				cout << "+";
 			}
 			cout << coeficientes[i][j] << "x^" << j << " ";
-			q[i] += coeficientes[i][j]*pow(xi[i], i);
 		}
-		q[i] = pow(q[i]-yi[i], 2);
 		cout << endl << endl;
+	}
+	
+	for (int i=0; i<maxPolinomio; i++) {
+		long double temp = 0;
+		for (int j=0; j<numDatos; j++) {
+			temp += pow(f(coeficientes[i], xi[j])-yi[j], 2);
+		}
+		q[i] = temp;
 	}
 	
 	int min = q[0];
@@ -157,9 +173,12 @@ int main() {
 		if (q[i] < min) {
 			min = q[i];
 		}
+		cout << q[i] << " ";
 	}
 	
-	cout << "La mejor aproximacion es con el polinomio de grado " << min << ", con una Q de " << q[min] << ".\n";
+	cout << "La mejor aproximacion es con el polinomio de grado " << min+1 << ", con una Q de " << q[min] << ".\n";
 	
     return 0;
 }
+
+
