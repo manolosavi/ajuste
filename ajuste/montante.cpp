@@ -7,6 +7,7 @@
 //
 
 #include <iostream>
+#include <math.h>
 #include <vector>
 using namespace std;
 
@@ -17,9 +18,7 @@ public:
 	int j;
 };
 
-//vector< vector<double> > a;
-
-void multiplica(vector< vector<double> > a, Point p, Point f, int piv) {
+void multiplica(vector< vector<double> > &a, Point p, Point f, int piv) {
 	if (p.i < f.i) {
 		a[f.i][f.j] = (a[p.i][p.j]*a[f.i][f.j] - a[p.i][f.j]*a[f.i][p.i]) / piv;
 	} else {
@@ -51,7 +50,7 @@ void solve(vector< vector<double> > &a, int numVariables, vector<double> &r) {
 	for (int i=0; i<numVariables; i++) {
 		pivAct = a[i][i];
 		
-		//			cambia renglones
+//		cambia renglones
 		if (pivAct == 0) {
 			for (int x=i; x<numVariables; x++) {
 				if (a[x][i] != 0) {
@@ -62,7 +61,7 @@ void solve(vector< vector<double> > &a, int numVariables, vector<double> &r) {
 			}
 		}
 		
-		//			hace nueva iteracion
+//		hace nueva iteracion
 		for (int x=0; x<numVariables; x++) {
 			if (x!=i) {
 				for (int y=i+1; y<=numVariables; y++) {
@@ -71,7 +70,7 @@ void solve(vector< vector<double> > &a, int numVariables, vector<double> &r) {
 			}
 		}
 		
-		//			hace ceros
+//		hace ceros
 		for (int x=0; x<numVariables; x++) {
 			for (int y=0; y<=i; y++) {
 				if (x==y) {
