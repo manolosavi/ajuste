@@ -37,7 +37,7 @@ void print(vector< vector<long double> > m) {
 
 int main() {
 	int numDatos, maxPolinomio;
-	vector<long double> xi, yi;
+	vector<long double> xi, yi, q;
 	vector< vector<long double> > matriz, coeficientes;
 	bool error = false;
 	
@@ -46,16 +46,16 @@ int main() {
 	
 	do {
 		if (error) {
-			cout << "No se puede ajustar a un polinomio mayor al numero de datos, vuelva a intentar.\n";
+			cout << "El polinomio a ajustar debe ser menor al numero de datos, vuelva a intentar.\n";
 		}
 		cout << "Cual es el maximo polinomio a ajustar?\n";
 		cin >> maxPolinomio;
-		error = (maxPolinomio > numDatos);
+		error = (maxPolinomio >= numDatos);
 	} while (error);
 	
 	long double x=0, y=0, wh=0;
 
-if (false) {//debug (usar 10 datos, X polinomios)
+//if (false) {//debug (usar 10 datos, X polinomios)
 //	leer xi, yi
 	for (int i=0; i<numDatos; i++) {
 		do {
@@ -80,32 +80,33 @@ if (false) {//debug (usar 10 datos, X polinomios)
 			}
 		} while (error);
 	}
-}//debug----
-	xi.push_back(6);
-	yi.push_back(3.8);
-	xi.push_back(8);
-	yi.push_back(3.7);
-	xi.push_back(10);
-	yi.push_back(4);
-	xi.push_back(12);
-	yi.push_back(3.9);
-	xi.push_back(14);
-	yi.push_back(4.3);
-	xi.push_back(16);
-	yi.push_back(4.2);
-	xi.push_back(18);
-	yi.push_back(4.2);
-	xi.push_back(20);
-	yi.push_back(4.4);
-	xi.push_back(22);
-	yi.push_back(4.5);
-	xi.push_back(24);
-	yi.push_back(4.5);
-	//debug----
+//}//debug----
+//	xi.push_back(6);
+//	yi.push_back(3.8);
+//	xi.push_back(8);
+//	yi.push_back(3.7);
+//	xi.push_back(10);
+//	yi.push_back(4);
+//	xi.push_back(12);
+//	yi.push_back(3.9);
+//	xi.push_back(14);
+//	yi.push_back(4.3);
+//	xi.push_back(16);
+//	yi.push_back(4.2);
+//	xi.push_back(18);
+//	yi.push_back(4.2);
+//	xi.push_back(20);
+//	yi.push_back(4.4);
+//	xi.push_back(22);
+//	yi.push_back(4.5);
+//	xi.push_back(24);
+//	yi.push_back(4.5);
+//	//debug----
 
 	
 	for (int i=0; i<maxPolinomio; i++) {//inicializa los vectores
 		coeficientes.push_back(vector<long double>());
+		q.push_back(0);
 	}
 	
 	for (int p=1; p<=maxPolinomio; p++) {//polinomios
@@ -145,8 +146,20 @@ if (false) {//debug (usar 10 datos, X polinomios)
 				cout << "+";
 			}
 			cout << coeficientes[i][j] << "x^" << j << " ";
+			q[i] += coeficientes[i][j]*pow(xi[i], i);
 		}
+		q[i] = pow(q[i]-yi[i], 2);
 		cout << endl << endl;
 	}
+	
+	int min = q[0];
+	for (int i=0; i<maxPolinomio; i++) {
+		if (q[i] < min) {
+			min = q[i];
+		}
+	}
+	
+	cout << "La mejor aproximacion es con el polinomio de grado " << min << ", con una Q de " << q[min] << ".\n";
+	
     return 0;
 }
