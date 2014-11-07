@@ -35,16 +35,6 @@ long double f(vector<long double> coeficientes, long double x) {
 	return r;
 }
 
-void print(vector< vector<long double> > m) {
-	for (int i=0; i<m.size(); i++) {
-		for (int j=0; j<m[i].size(); j++) {
-			cout << m[i][j] << " ";
-		}
-		cout << endl;
-	}
-	cout << endl << endl;
-}
-
 int main() {
 	int numDatos, maxPolinomio;
 	vector<long double> xi, yi, q;
@@ -64,8 +54,6 @@ int main() {
 	} while (error);
 	
 	long double x=0, y=0, wh=0;
-
-//if (false) {//debug (usar 10 datos, X polinomios)
 //	leer xi, yi
 	for (int i=0; i<numDatos; i++) {
 		do {
@@ -90,29 +78,6 @@ int main() {
 			}
 		} while (error);
 	}
-//}//debug----
-//	xi.push_back(6);
-//	yi.push_back(3.8);
-//	xi.push_back(8);
-//	yi.push_back(3.7);
-//	xi.push_back(10);
-//	yi.push_back(4);
-//	xi.push_back(12);
-//	yi.push_back(3.9);
-//	xi.push_back(14);
-//	yi.push_back(4.3);
-//	xi.push_back(16);
-//	yi.push_back(4.2);
-//	xi.push_back(18);
-//	yi.push_back(4.2);
-//	xi.push_back(20);
-//	yi.push_back(4.4);
-//	xi.push_back(22);
-//	yi.push_back(4.5);
-//	xi.push_back(24);
-//	yi.push_back(4.5);
-//	//debug----
-
 	
 	for (int i=0; i<maxPolinomio; i++) {//inicializa los vectores
 		coeficientes.push_back(vector<long double>());
@@ -133,12 +98,8 @@ int main() {
 			matriz.push_back(temp);//guarda renglon en matriz
 		}
 		
-		print(matriz);
-		
 		solve(matriz, p+1, coeficientes[p-1]);
 //		resuelve la matriz con montante, regresa las respuestas en el vector coeficientes
-		
-		print(matriz);
 		
 		for (int a=0; a<matriz.size(); a++) {//borrar matriz para reusar
 			matriz[a].clear();
@@ -168,17 +129,16 @@ int main() {
 		q[i] = temp;
 	}
 	
-	int min = q[0];
+	int min = 0;
+	long double mini = q[0];
 	for (int i=0; i<maxPolinomio; i++) {
-		if (q[i] < min) {
-			min = q[i];
+		if (q[i] < q[min]) {
+			min = i;
+			mini = q[i];
 		}
-		cout << q[i] << " ";
 	}
 	
 	cout << "La mejor aproximacion es con el polinomio de grado " << min+1 << ", con una Q de " << q[min] << ".\n";
 	
     return 0;
 }
-
-
